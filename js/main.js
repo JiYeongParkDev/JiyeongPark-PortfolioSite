@@ -1,8 +1,9 @@
 // js/main.js
 
 document.addEventListener('DOMContentLoaded', function () {
-  var HEADER_OFFSET = 140; // 헤더 높이 + 여유 (필요하면 숫자만 조절)
-
+  //var HEADER_OFFSET = 80; // 헤더 높이 + 여유 (필요하면 숫자만 조절)
+  const header = document.querySelector('.site-header');
+  const HEADER_OFFSET = header.offsetHeight + 20; // 헤더높이 + 여유 20px
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
   var sections = [
     { id: 'home', el: document.getElementById('home'), start: 0 },
@@ -14,8 +15,17 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateSectionStarts() {
     sections.forEach(function (sec) {
       var rect = sec.el.getBoundingClientRect();
-      sec.start = rect.top + window.scrollY; // 문서 전체 기준 y좌표
+
+      var start = rect.top + window.scrollY; // 문서 전체 기준 y좌표
+      //sec.start = rect.top + window.scrollY; // 문서 전체 기준 y좌표
+
+      if (sec.id === 'project') {
+        start -= 200;  // ← 이 값으로 조절 (150~250 정도 왔다 갔다 해보셔도 됨)
+      }
+
+      sec.start = start;
     });
+
 
     // 시작 위치를 기준으로 정렬 (home < about < project 순서 보장)
     sections.sort(function (a, b) {
@@ -119,21 +129,34 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.style.overflow = ''; // 스크롤 원복
   });
 
+  // =========================
+  // Contact 버튼 → 이메일 복사 + 토스트
+  // =========================
+  const contactBtn = document.querySelector('.floating-contact-btn');
+  const toast = document.getElementById('copyToast');
+  const EMAIL = 'jizeropark@naver.com';   // 실제 이메일 주소로 바꾸기
+
+  if (contactBtn && toast) {
+    contactBtn.addEventListener('click', function () {
+      // 클립보드 복사 시도
+      navigator.clipboard.writeText(EMAIL).then(function () {
+        // 토스트 표시
+        toast.classList.add('show');
+
+        // 1.8초 뒤에 자동으로 숨기기
+        setTimeout(function () {
+          toast.classList.remove('show');
+        }, 1800);
+      }).catch(function () {
+        // 브라우저에서 clipboard 막혀 있을 때 예외 처리
+        alert('이메일을 복사하지 못했습니다.\n다음 주소를 직접 복사해 주세요:\n' + EMAIL);
+      });
+    });
+  }
+
 
 });
 
-
-// ===========================
-// 모달 내부 인덱스 스크롤 이동
-// ===========================
-
-// ===========================
-// 모달 내부 인덱스 스크롤 이동 (수정 버전)
-// ===========================
-
-// ===========================
-// 모달 내부 인덱스 스크롤 이동 (단순 버전)
-// ===========================
 
 document.addEventListener('click', function (e) {
   const btn = e.target.closest('.index-btn');
@@ -156,11 +179,11 @@ document.addEventListener('click', function (e) {
   const scrollBox = modalCard.querySelector('.modal-scroll-body');
   if (!scrollBox) return;
 
-  // ★ 클릭으로 이동하는 동안 scroll spy 잠깐 꺼두기
+  // 클릭으로 이동하는 동안 scroll spy 잠깐 꺼두기
   scrollBox.dataset.manualScroll = "true";
 
 
-  // 🔹 프로젝트 개요는 그냥 맨 위로 보내기
+  // 프로젝트 개요는 그냥 맨 위로 보내기
   if (selector === '#section-overview' || selector === '#toilet-overview' || selector === '#booklog-overview') {
     scrollBox.scrollTo({
       top: 0,
