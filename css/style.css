@@ -47,6 +47,7 @@ body {
   gap: 12px;
 }
 
+
 .print-btn {
   position: absolute;
   /*  .site-header 기준으로 배치 */
@@ -75,6 +76,11 @@ body {
 .print-btn span {
   font-size: 12px;
   color: #333;
+}
+
+.print-btn {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* 네비 활성 표시 */
