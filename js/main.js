@@ -1,7 +1,7 @@
 // js/main.js
 
 document.addEventListener('DOMContentLoaded', function () {
-  //var HEADER_OFFSET = 80; // 헤더 높이 + 여유 (필요하면 숫자만 조절)
+  
   const header = document.querySelector('.site-header');
   const HEADER_OFFSET = header.offsetHeight + 20; // 헤더높이 + 여유 20px
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', function () {
       var rect = sec.el.getBoundingClientRect();
 
       var start = rect.top + window.scrollY; // 문서 전체 기준 y좌표
-      //sec.start = rect.top + window.scrollY; // 문서 전체 기준 y좌표
+  
 
       if (sec.id === 'project') {
-        start -= 200;  // ← 이 값으로 조절 (150~250 정도 왔다 갔다 해보셔도 됨)
+        start -= 200;  
       }
 
       sec.start = start;
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 2) 각 아이콘에 클릭 이벤트 달기
   triggers.forEach(function (trigger) {
     trigger.addEventListener('click', function () {
-      const targetId = trigger.getAttribute('data-target'); // 예: "modal-pomodo"
+      const targetId = trigger.getAttribute('data-target'); 
       const modal = document.getElementById(targetId);
       if (!modal) return;
 
@@ -119,14 +119,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // 회색 배경 눌렀는지
     const backdrop = e.target.closest('.project-modal-backdrop');
 
-    if (!closeBtn && !backdrop) return; // 둘 다 아니면 무시
+    if (!closeBtn && !backdrop) return; 
 
     // 지금 열린 모달 찾기
     const openModal = document.querySelector('.project-modal.is-open');
     if (!openModal) return;
 
     openModal.classList.remove('is-open');
-    document.body.style.overflow = ''; // 스크롤 원복
+    document.body.style.overflow = ''; 
   });
 
   // =========================
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // =========================
   const contactBtn = document.querySelector('.floating-contact-btn');
   const toast = document.getElementById('copyToast');
-  const EMAIL = 'jizeropark@naver.com';   // 실제 이메일 주소로 바꾸기
+  const EMAIL = 'jizeropark@naver.com';   
 
   if (contactBtn && toast) {
     contactBtn.addEventListener('click', function () {
@@ -200,7 +200,7 @@ document.addEventListener('click', function (e) {
       behavior: 'smooth'
     });
 
-    // ★ 스크롤 애니메이션 끝났다고 보고 다시 켜기
+    // 스크롤 애니메이션 끝났다고 보고 다시 켜기
     setTimeout(() => { scrollBox.dataset.manualScroll = ""; }, 300);
 
     return;
@@ -210,8 +210,7 @@ document.addEventListener('click', function (e) {
   const scrollBoxTop = scrollBox.getBoundingClientRect().top;
   const targetTop = target.getBoundingClientRect().top;
 
-  // 여백(조금 띄우고 싶으면 양수/음수 조절)
-  const EXTRA_MARGIN = 3;  // 여기 숫자만 조절하면 됨
+  const EXTRA_MARGIN = 3; 
 
   const offset = scrollBox.scrollTop + (targetTop - scrollBoxTop) - EXTRA_MARGIN;
 
@@ -219,6 +218,7 @@ document.addEventListener('click', function (e) {
     top: offset,
     behavior: 'smooth'
   });
+  
   // ★ 일반 섹션도 마찬가지로 300ms 뒤에 다시 켜기
   setTimeout(() => { scrollBox.dataset.manualScroll = ""; }, 300);
 });
@@ -226,9 +226,7 @@ document.addEventListener('click', function (e) {
 // ===========================
 // 프로젝트 모달 내부 scroll spy (스크롤 시 인덱스 자동 활성화)
 // ===========================
-// ===========================
-// 프로젝트 모달 내부 scroll spy (스크롤 시 인덱스 자동 활성화 - 수정 버전)
-// ===========================
+
 function initModalScrollSpy(modal) {
   const scrollBox = modal.querySelector('.modal-scroll-body');
   const buttons = modal.querySelectorAll('.index-btn');
@@ -242,7 +240,7 @@ function initModalScrollSpy(modal) {
   // 버튼 ↔ 섹션 매핑
   const pairs = Array.from(buttons)
     .map(btn => {
-      const selector = btn.getAttribute('data-target');   // 예: "#section-role"
+      const selector = btn.getAttribute('data-target');   
       const sec = modal.querySelector(selector);
       return sec ? { btn, sec } : null;
     })
