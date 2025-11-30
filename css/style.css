@@ -48,6 +48,36 @@ body {
   gap: 12px;
 }
 
+.print-btn {
+  position: absolute;
+  /* 🔹 .site-header 기준으로 배치 */
+  top: 50%;
+  right: -80px;
+  /* 캡슐 오른쪽에서 얼마나 떨어질지 */
+  transform: translateY(-50%);
+
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  /* gap: 4px; */
+  align-items: center;
+  justify-content: center;
+}
+
+.print-btn img {
+  width: 28px;
+  height: 28px;
+}
+
+.print-btn span {
+  font-size: 12px;
+  color: #333;
+}
+
 /* 네비 활성 표시 */
 .nav-link {
   font-weight: 600;
@@ -274,7 +304,7 @@ section {
   /* 증명사진 3:4 비율 유지 */
   border-radius: 10px;
   /* 증명사진 기본 둥근 정도 */
-  
+
   margin-left: 90px;
   margin-top: 10px;
 
@@ -516,8 +546,8 @@ section {
 
 /* .skills-col {
   min-width: 0;
-  /* padding: 0 32px;   ★ 각 칼럼 내부에서 좌우로 32px 떨어지게 
-  padding: 0 48px 0 32px;  바깥쪽(왼쪽) 32, 가운데 선 쪽 48 
+  /* padding: 0 32px;   ★ 각 칼럼 내부에서 좌우로 32px 떨어지게
+  padding: 0 48px 0 32px;  바깥쪽(왼쪽) 32, 가운데 선 쪽 48
 } */
 
 /* 왼쪽 칼럼(Language / Framework) */
@@ -699,25 +729,6 @@ section {
   background: #fff;
 }
 
-/*
-/* 타임라인 라인
-.project-timeline {
-  position: relative;
-  width: 80%;
-  height: 4px;
-  background: #000;
-  margin-bottom: 80px;
-}
-
-.project-timeline .dot {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  background: #000;
-  border-radius: 50%;
-}*/
 
 /* 타임라인 컨테이너: 가로 정렬 */
 .project-timeline {
@@ -1458,4 +1469,870 @@ section {
 .copy-toast.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+@page {
+  size: A4 landscape;
+  margin: 8mm;
+}
+
+@media print {
+
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 프린트용에서 없어야 할 요소들 */
+  .site-header,
+  .floating-contact-btn,
+  .nav-overlay,
+  .scroll-indicator,
+  .back-to-top-btn {
+    display: none !important;
+  }
+
+  /* 페이지 한 장 기준으로 Home을 세로 가운데 정렬 */
+  #home {
+    display: flex !important;
+    justify-content: center !important;
+    /* 가로 가운데 */
+    align-items: center !important;
+    /* 세로 가운데 */
+    height: 100vh !important;
+    /* 한 페이지 높이 전체 */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 안쪽 내용은 세로로 쌓기 */
+  #home .home-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+
+  /* 2. 영어 제목: Mobile App Developer */
+  #home .main-title {
+    font-size: 70px !important;
+    font-weight: 800 !important;
+
+    margin-bottom: -5mm !important;
+    line-height: 1.1 !important;
+
+    position: static !important;
+    transform: none !important;
+  }
+
+  /* 3. 한국어 제목: 모바일 앱 개발자 박지영 */
+  #home .sub-title {
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    margin: 0 0 8mm !important;
+
+    position: static !important;
+    transform: none !important;
+  }
+
+  /* 4. 캐릭터 이미지 */
+  #home .home-image img {
+    width: 280px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+
+    position: static !important;
+    transform: none !important;
+  }
+
+
+
+  ★ About 섹션은 새 페이지에서 시작 #about {
+    page-break-before: always;
+    padding: 0mm 10mm !important;
+  }
+
+  /* ==========================
+     1. about-box :
+        "누구나~" + 사진 + 이력서 정보까지
+        -> 한 덩어리, 높이/여백 압축
+  ========================== */
+  #about .about-box {
+    margin: 0 0 0mm !important;
+    padding: 3mm 6mm 0mm 6mm !important;
+    height: auto !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* "누구나 쉽고…" 문구 */
+  #about .about-quote {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    margin: 0 0 4mm !important;
+    text-align: center !important;
+  }
+
+  /* 사진 + 이력서 정보 : 가로 한 줄 배치 */
+  #about .about-grid {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 14mm !important;
+  }
+
+  /* 왼쪽: 사진 */
+  #about .about-photo,
+  #about .about-photo img {
+    display: block !important;
+    width: 35mm !important;
+    /* 필요하면 30~40mm 사이로 조절 */
+    height: auto !important;
+    margin: 0 !important;
+    border-radius: 5mm !important;
+    margin-top: 5mm !important;
+    margin-left: 18mm !important;
+    margin-right: 30mm !important;
+  }
+
+  /* 오른쪽: 이력서 정보 */
+  #about .about-info {
+    flex: 1 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    margin-top: 2mm !important;
+  }
+
+  #about .about-info .row {
+    display: flex !important;
+    margin-bottom: 1mm !important;
+  }
+
+  #about .about-info .label {
+    width: 24mm !important;
+    font-weight: 700 !important;
+    padding-left: 2mm !important;
+    /* 레이블도 살짝 안쪽으로 */
+  }
+
+  #about .about-info .value {
+    flex: 1 !important;
+  }
+
+
+  /* 스킬 전체 컨테이너를 4열 그리드로 사용 */
+  #about .skills-page {
+    margin-top: 1mm !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    /* 4열 */
+    column-gap: 10mm !important;
+    /* 좌우 간격 조금 넓게 */
+    row-gap: 6mm !important;
+    /* 위아래 간격 확보 */
+    font-size: 10px !important;
+    /* 글자도 조금 키움 */
+    justify-items: center !important;
+    /* 그리드 셀 자체를 가운데 정렬 */
+  }
+
+  /* 각 skills-box(위/아래 박스)를 "껍데기"만 남기고
+     내부 컬럼들이 바로 skills-page 그리드에 붙도록 flatten */
+  #about .skills-box {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: contents !important;
+    /* 자식들을 위로 올리기 */
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* 안쪽의 .skills-grid도 레이아웃에 관여하지 않도록 flatten */
+  #about .skills-grid {
+    display: contents !important;
+  }
+
+  /*
+  /* 실제 그리드 셀 역할을 하는 컬럼들 */
+  #about .skills-col {
+    width: auto !important;
+    padding: 2mm 0 !important;
+    /* 위아래 여백 */
+  }
+
+  /* #about .skills-col {
+  width: auto !important;
+  padding: 2mm 3mm !important;
+  border-radius: 3mm !important;
+  border: 1px solid #ddd !important;
+  background: #fafafa !important;
+  box-sizing: border-box !important;
+  page-break-inside: avoid !important;
+} */
+
+  /* 카테고리 배지( Language / Frontend / ... ) */
+  #about .cat-badge {
+    display: inline-block !important;
+    font-size: 12px !important;
+    margin-bottom: 1mm !important;
+  }
+
+  /* 리스트 간격 압축 */
+  #about .skill-list {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    list-style: none !important;
+  }
+
+  #about .skill-item {
+    margin-bottom: 0.5mm !important;
+    line-height: 1.1 !important;
+  }
+
+  #about .skill-name,
+  #about .skill-level {
+    font-size: 12px !important;
+  }
+
+  #about .about-grid {
+    gap: 14mm !important;
+  }
+
+  #about .about-info {
+    margin-left: 3mm !important;
+  }
+
+  /* 맨 마지막 row는 여백 없애기 (이게 핵심) */
+  #about .about-info .row:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* ===========================
+   프린트용 Career 섹션 레이아웃
+   (1,2번 카드 : 가로 2열 / 3번 카드 : 다음 페이지 단독)
+   =========================== */
+
+  /* 기본 여백 조금 줄이기 */
+  .career-section {
+    padding: 10mm 10mm 0mm !important;
+    display: block !important;
+    /* flex 해제 */
+  }
+
+  /* 모든 카드 공통 - 인쇄에서 적당한 크기 */
+  .career-section .career-box {
+    box-sizing: border-box !important;
+    padding: 16mm 14mm !important;
+    /* 위아래·좌우 여백 축소 */
+    font-size: 12px !important;
+    page-break-inside: avoid !important;
+
+  }
+
+  .career-section br {
+    display: none !important;
+  }
+
+  .career-section .career-box h2 {
+    font-size: 20px !important;
+    margin-bottom: 6mm !important;
+  }
+
+  .career-section .career-box p {
+    font-size: 14px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    line-height: 1.6 !important;
+  }
+
+  /* 1번 + 2번 박스를 동일 높이로 고정 */
+  .career-section .career-box:nth-child(1),
+  .career-section .career-box:nth-child(2) {
+    height: 140mm !important;
+    /* 둘의 세로 길이를 강제로 동일화 */
+  }
+
+  /* ── 1번 + 2번 카드 : 가로 2열 배치 ───────────────── */
+
+  /* 1번 카드(성격 및 장단점) */
+  .career-section .career-box:nth-child(1) {
+    float: left !important;
+    width: 49% !important;
+    /* 왼쪽 1/2 */
+    margin-right: 2% !important;
+    /* 가운데 간격 */
+    margin-bottom: 0 !important;
+  }
+
+  /* 2번 카드(직무 관련 경험 및 강점) */
+  .career-section .career-box:nth-child(2) {
+    float: right !important;
+    width: 49% !important;
+    /* 오른쪽 1/2 */
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+    page-break-after: always !important;
+    /* 2번 뒤에서 페이지 나누기 */
+  }
+
+  /* ── 3번 카드 : 다음 페이지에서 단독 전체 폭 ─────────── */
+
+  .career-section .career-box:nth-child(3) {
+    clear: both !important;
+    /* 위의 float 정리 */
+    width: 100% !important;
+    margin-top: 12mm !important;
+    margin-right: 2% !important;
+    margin-bottom: 1m !important;
+    /* 커리어 목표 박스 아래 여백도 최소화 */
+  }
+
+  /* ─────────────────────────────── */
+  /* 3. 커리어 목표 + 프로젝트 섹션(인쇄용) */
+  /* ─────────────────────────────── */
+  #project.project-section {
+    /* 커리어 목표 카드 바로 아래에 붙도록 여백 최소화 */
+    padding: 0mm 15mm 0 !important;
+    background: #fff !important;
+    page-break-before: auto !important;
+    /* 중간에서 새 페이지로 안 넘어가게 */
+    page-break-after: auto !important;
+    margin-top: 0 !important;
+    /* 혹시 기본 margin이 있다면 제거 */
+  }
+
+  /* 프로젝트 타임라인: 가로 3열 유지 */
+  #project .project-timeline {
+    display: flex !important;
+    flex-direction: row !important;
+    /* 가로 배치로 강제 */
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    max-width: 100% !important;
+    /* 프린트 폭에 꽉 차게 */
+    margin: 0 auto 0 !important;
+    /* 위쪽 여백도 0으로 */
+    /* 위쪽만 살짝 띄우기 */
+    gap: 8mm !important;
+    /* 카드 사이 간격 */
+  }
+
+  /* 각 프로젝트 칼럼 */
+  #project .project-item {
+    flex: 0 0 32% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  /* 프로젝트 카드 자체 */
+  #project .project-card {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 6mm 4mm !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    /* 그림자는 인쇄에서 거의 티 안 나서 제거 */
+  }
+
+  /* 아이콘 크기 조정 (프린트용) */
+  #project .project-icon {
+    width: 60px !important;
+    height: 60px !important;
+    /* margin: 3mm 0 !important; */
+    box-shadow: none !important;
+  }
+
+  /* 텍스트 크기 조정 */
+  #project .project-card h3 {
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    margin: 3mm 0 1mm !important;
+  }
+
+  #project .project-card .period,
+  #project .project-card .role,
+  #project .project-card .desc {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* 모달용 장식(꺾쇠, Click)은 인쇄에서는 빼기 */
+  #project .icon-frame {
+    padding: 0 !important;
+  }
+
+  #project .corner,
+  #project .click-text {
+    display: none !important;
+  }
+
+  .project-index {
+    display: none !important;
+  }
+
+  /* 1) 모달을 일반 섹션처럼 모두 표시 */
+  .project-modal {
+    position: static !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    display: block !important;
+    margin: 0 10mm !important;
+  }
+
+  /* 2) 각 모달을 한 장씩 */
+  #modal-pomodo {
+    page-break-before: always !important;
+  }
+
+  #modal-toilet,
+  #modal-booklog {
+    page-break-before: always !important;
+  }
+
+  /* 3) 배경 딤 + X 버튼 숨기기 */
+  .project-modal-backdrop,
+  .project-modal-close {
+    display: none !important;
+  }
+
+  /* 4) 모달 박스는 전체 폭 섹션 형태 */
+  .project-modal-content {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+    padding: 10mm 10mm !important;
+    overflow: visible !important;
+    background: #fff !important;
+    /* 필요하면 유지/삭제 조정 */
+  }
+
+  /* 5) 안쪽 카드/스크롤 제한 해제 */
+  .modal-inner-card {
+    margin-top: 0 !important;
+    max-height: none !important;
+  }
+
+  .modal-scroll-body {
+    overflow: visible !important;
+    max-height: none !important;
+    padding-right: 0 !important;
+  }
+
+  /* 혹시 sticky 남아 있으면 일반 블록으로 */
+  .project-title-block {
+    position: static !important;
+  }
+
+  /* ───────── Pomo-do 모달 페이지 분할 ───────── */
+
+  /* [1페이지] 개요 + 이미지 (기본 페이지) → 따로 page-break 없음 */
+
+  /* [2페이지] 담당 역할 단독 */
+  #modal-pomodo #section-role {
+    page-break-before: always !important;
+    page-break-after: always !important;
+  }
+
+  /* ───────── Pomo-do : 개발 목적 + Kotlin 선택 이유 같은 페이지에 배치 ───────── */
+
+  /* 1) 둘 사이에 강제 페이지 나누기 금지 */
+  #modal-pomodo #section-purpose,
+  #modal-pomodo #section-kotlin {
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  /* 2) 제목의 위쪽 여백 줄이기 (원래 margin-top: 140px 때문에 아래로 밀려버림) */
+  #modal-pomodo #section-purpose .project-detail-heading,
+  #modal-pomodo #section-kotlin .project-detail-heading-2 {
+    margin-top: 18px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* ───────── Pomo-do : 기능 소개 (타이머 / 플래너 / 기록) ───────── */
+  /* 1페이지: section-feature1 = 타이머
+   2페이지: section-feature2 = 플래너
+   3페이지: section-feature3 = 기록  */
+
+  /* 각 기능 소개를 프린트에서 1페이지씩 사용하도록 */
+  #modal-pomodo #section-feature1,
+  #modal-pomodo #section-feature2 {
+    page-break-before: always !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    padding-top: 8mm !important;
+    padding-bottom: 6mm !important;
+  }
+
+  /* 공통 레이아웃: 왼쪽 사진, 오른쪽 설명 */
+  #modal-pomodo #section-feature1 .feature-layout,
+  #modal-pomodo #section-feature2 .feature-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 15mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 왼쪽: 이미지 영역 */
+  #modal-pomodo #section-feature1 .feature-images,
+  #modal-pomodo #section-feature2 .feature-images {
+    flex: 0 0 40% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+  }
+
+  /* 실제 폰 화면 이미지 크기 */
+  #modal-pomodo #section-feature1 .feature-phone img,
+  #modal-pomodo #section-feature2 .feature-phone img {
+    max-width: 70mm !important;
+    /* A4 기준으로 꽤 크게 */
+    height: auto !important;
+  }
+
+  /* 캡션(이미지 아래 설명) */
+  #modal-pomodo #section-feature1 .feature-caption,
+  #modal-pomodo #section-feature2 .feature-caption {
+    font-size: 16px !important;
+    margin-top: 4px !important;
+    text-align: center !important;
+  }
+
+  /* 오른쪽: 텍스트(설명) 영역 */
+  #modal-pomodo #section-feature1 .feature-text,
+  #modal-pomodo #section-feature2 .feature-text {
+    flex: 1 1 auto !important;
+  }
+
+  /* 기능 소개 본문 글자 */
+  #modal-pomodo #section-feature1 .feature-text p,
+  #modal-pomodo #section-feature2 .feature-text p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 4px !important;
+  }
+
+  #modal-pomodo .modal-inner-card {
+    min-height: 930mm !important;
+    /* 카드의 세로 길이 크게 늘림 */
+    height: auto !important;
+    /* 내용에 맞춰 늘어나도록 */
+    padding-bottom: 20mm !important;
+    /* 아래 여백 여유 */
+    box-sizing: border-box !important;
+  }
+
+  /* ───────── Pomo-do : 기능 소개 2 (기록 화면) 레이아웃 조정 ───────── */
+
+  /* 1) 기록 섹션 전체 블록을 카드 안에서 살짝 왼쪽으로 이동 */
+  #modal-pomodo #section-feature2 .feature-layout {
+    gap: 10mm !important;
+    /* 이미지와 텍스트 사이 간격 */
+    margin-left: -8mm !important;
+    /* 덩어리 전체를 왼쪽으로 약간 이동 */
+  }
+
+  /* 2) 기록 이미지 영역 폭 조금 줄이고 왼쪽 정렬 */
+  #modal-pomodo #section-feature2 .feature-images {
+    flex: 0 0 20% !important;
+    /* 기존 40% → 30%로 줄여서 더 왼쪽으로 붙게 */
+    justify-content: flex-start !important;
+  }
+
+  /* 3) 기록 설명(텍스트) 영역 넓히기 */
+  #modal-pomodo #section-feature2 .feature-text {
+    flex: 1 1 70% !important;
+    max-width: 70% !important;
+  }
+
+  /* ───────── 비상 화장실 모달: 프린트 페이지 분할 ───────── */
+
+  /* [2페이지] 담당 역할 단독 */
+  #modal-toilet #toilet-role {
+    page-break-before: always !important;
+    page-break-after: always !important;
+  }
+
+  /* 개발 목적 + Google Map 이유 같은 페이지에 배치 */
+  #modal-toilet #toilet-purpose,
+  #modal-toilet #toilet-GoogleMap {
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  /* 두 섹션 제목 위 여백 줄이기 */
+  #modal-toilet #toilet-purpose .project-detail-heading,
+  #modal-toilet #toilet-GoogleMap .project-detail-heading-2 {
+    margin-top: 18px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* ───────── 비상 화장실 : 기능 소개 1, 2 ───────── */
+  /* 각 기능 소개를 프린트에서 1페이지씩 사용하도록 */
+  #modal-toilet #toilet-feature1,
+  #modal-toilet #toilet-feature2 {
+    page-break-before: always !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    padding-top: 8mm !important;
+    padding-bottom: 6mm !important;
+  }
+
+  /* 공통 레이아웃: 왼쪽 사진, 오른쪽 설명 */
+  #modal-toilet #toilet-feature1 .feature-layout,
+  #modal-toilet #toilet-feature2 .feature-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 15mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 왼쪽: 이미지 영역 */
+  #modal-toilet #toilet-feature1 .feature-images,
+  #modal-toilet #toilet-feature2 .feature-images {
+    flex: 0 0 40% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+  }
+
+  /* 실제 폰 화면 이미지 크기 */
+  #modal-toilet #toilet-feature1 .feature-phone img,
+  #modal-toilet #toilet-feature2 .feature-phone img {
+    max-width: 70mm !important;
+    height: auto !important;
+  }
+
+  /* 캡션(이미지 아래 설명) */
+  #modal-toilet #toilet-feature1 .feature-caption,
+  #modal-toilet #toilet-feature2 .feature-caption {
+    font-size: 16px !important;
+    margin-top: 4px !important;
+    text-align: center !important;
+  }
+
+  /* 오른쪽: 텍스트(설명) 영역 */
+  #modal-toilet #toilet-feature1 .feature-text,
+  #modal-toilet #toilet-feature2 .feature-text {
+    flex: 1 1 auto !important;
+  }
+
+  /* 기능 소개 본문 글자 */
+  #modal-toilet #toilet-feature1 .feature-text p,
+  #modal-toilet #toilet-feature2 .feature-text p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* 카드 자체도 Pomo-do와 비슷하게 길게 */
+  #modal-toilet .modal-inner-card {
+    min-height: 930mm !important;
+    height: auto !important;
+    padding-bottom: 20mm !important;
+    box-sizing: border-box !important;
+  }
+
+  #modal-toilet #toilet-purpose {
+    margin-bottom: 30mm !important;
+  }
+
+  /* ───────── Book-Log : 프린트 전용 레이아웃 ───────── */
+
+
+  /* 1) 화면용 기능소개1(서재+책추가)는 프린트에서 숨김 */
+  #modal-booklog #booklog-feature1 {
+    display: none !important;
+  }
+
+  /* 2) 프린트용 기능소개1만 프린트에서 보이게 */
+  #booklog-feature1-print {
+    display: block !important;
+    page-break-before: always !important;
+    /* 북로그 첫 기능 소개를 새 페이지에서 시작 */
+  }
+
+
+  #booklog-feature1-print {
+    padding-left: 10mm !important;
+    padding-right: 10mm !important;
+  }
+
+  /* 3) 프린트용 기능소개1 안의 각 print-page는 한 장씩 사용 */
+  #booklog-feature1-print .print-page {
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    padding-top: 8mm !important;
+    padding-bottom: 6mm !important;
+  }
+
+  /* 4) 공통 레이아웃: 왼쪽 사진 묶음, 오른쪽 설명 (Pomo-do와 동일 패턴) */
+  #booklog-feature1-print .feature-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 15mm !important;
+    /* 왼쪽 묶음 ↔ 오른쪽 텍스트 사이 간격 */
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+
+
+  /* Book-Log 기능 소개: 이미지 묶음 폭/간격 통일 */
+  #booklog-feature1-print .feature-images,
+  #modal-booklog #booklog-feature2 .feature-images {
+    flex: 0 0 40% !important;
+    /* 두 페이지 모두 동일 폭 */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 15mm !important;
+    /* 폰들 사이 간격 */
+  }
+
+
+
+  /* Book-Log 기능 소개: 폰 이미지 크기 통일 */
+  #booklog-feature1-print .feature-phone img,
+  #modal-booklog #booklog-feature2 .feature-phone img {
+    max-width: 60mm !important;
+    /* 55~65mm 사이에서 취향대로 조절 가능 */
+    height: auto !important;
+  }
+
+
+  /* 7) 오른쪽: 텍스트 영역 */
+  #booklog-feature1-print .feature-text {
+    flex: 1 1 auto !important;
+  }
+
+  #booklog-feature1-print .feature-text p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* 8) 캡션 글자 */
+  #booklog-feature1-print .feature-caption {
+    font-size: 16px !important;
+    margin-top: 4px !important;
+    text-align: center !important;
+  }
+
+  /* 9) 기능소개2(독서 캘린더/책탑)는 기존과 동일하게 한 장에 */
+  #modal-booklog #booklog-feature2 {
+    page-break-before: always !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    padding-top: 8mm !important;
+    padding-bottom: 6mm !important;
+  }
+
+  #modal-booklog #booklog-feature2 .feature-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 15mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* #modal-booklog #booklog-feature2 .feature-images {
+    flex: 0 0 40% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 6mm !important;
+  } */
+
+  /* #modal-booklog #booklog-feature2 .feature-phone img {
+    max-width: 70mm !important;
+    height: auto !important;
+  } */
+
+  #modal-booklog #booklog-feature2 .feature-text {
+    flex: 1 1 auto !important;
+
+  }
+
+  #modal-booklog #booklog-feature2 .feature-text p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* ───────── Book-Log : 담당 역할 / 개발 목적 페이지 나누기 ───────── */
+
+  /* ───────── Book-Log : 페이지 분할 규칙 ───────── */
+  /* [2페이지] 담당 역할 단독 (뽀모두 / 비상 화장실과 동일 패턴) */
+  #modal-booklog #booklog-role {
+    page-break-before: always !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* 개발 목적 + Firestore 선택 이유 같은 페이지에 배치 */
+  #modal-booklog #booklog-purpose,
+  #modal-booklog #booklog-Firestore {
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  /* 두 섹션 제목 위 여백 줄이기 (뽀모두 / 비상 화장실과 동일 값) */
+  #modal-booklog #booklog-purpose .project-detail-heading,
+  #modal-booklog #booklog-Firestore .project-detail-heading-2 {
+    margin-top: 18px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Book-Log 모달 길이 통일*/
+  #modal-booklog .modal-inner-card {
+    min-height: 1110mm !important;
+    /* ← 화장실이랑 똑같이 길게 */
+    height: auto !important;
+    padding-bottom: 20mm !important;
+    box-sizing: border-box !important;
+  }
+
+  #modal-booklog #booklog-feature2 {
+    display: none !important;
+  }
+
+  /* Book-Log 기능 소개 3장 각각을 페이지 꽉 차게 보이도록 최소 높이 부여 */
+  #booklog-feature1-print .print-page {
+    min-height: 194mm !important;
+    /* A4(landscape)에서 내용이 위쪽에만 몰리지 않게 */
+    box-sizing: border-box !important;
+  }
+
+  #booklog-feature1-print .print-page:last-child {
+    page-break-after: auto !important;
+  }
+
+
+}
+
+
+
+
+/* 기본: 프린트용은 숨김 */
+.print-only {
+  display: none;
 }

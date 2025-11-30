@@ -8,11 +8,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/main.js"></script>
 </head>
-<script>
-  document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-  });
-</script>
+
 <body>
 
   <!-- 상단 고정 네비게이션 -->
@@ -24,10 +20,16 @@
       <span class="divider">|</span>
       <a href="#project" class="nav-link">Project</a>
     </nav>
+    <button id="print-btn" class="print-btn">
+      <img src="assets/icons/print_icon.svg" alt="print" />
+      print
+    </button>
+
   </header>
 
   <!-- HOME 섹션 -->
   <section id="home" class="section home-section">
+
     <div class="home-inner">
       <h1 class="main-title">Mobile App Developer</h1>
       <h2 class="sub-title">모바일 앱 개발자 박지영</h2>
@@ -53,12 +55,12 @@
   <section id="about" data-section="about" class="about-section">
     <div class="about-box">
       <p class="about-quote"><strong>
-        “누구나 쉽고 편리하게 사용할 수 있는 모바일 앱을 만드는 개발자 박지영입니다”
-      </strong>
+          “누구나 쉽고 편리하게 사용할 수 있는 모바일 앱을 만드는 개발자 박지영입니다”
+        </strong>
       </p>
 
       <div class="about-grid">
-        <div class="about-photo"><img src="assets/img/증명사진_밝은버전.jpg" alt="증명사진" ></div>
+        <div class="about-photo"><img src="assets/img/증명사진_밝은버전.jpg" alt="증명사진"></div>
 
         <div class="about-info">
           <div class="row">
@@ -193,9 +195,10 @@
       <div class="career-box">
         <h2>성격 및 장단점</h2>
         <p>저는 어떤 일이든 “왜”라는 질문을 하며 접근하는 편입니다.
-          문제를 구조적으로 파악하고 해결하는 과정에서 세부 요소를 <br>차근차근 정리해 나갑니다. 이러한 성향 덕분에 프로젝트에서도 기획·분석·설계·구현 단계를 단계적으로 진행하며 안정적으로 완성해 왔습니다.
+          문제를 구조적으로 파악하고 해결하는 과정에서 세부 요소를 <br>차근차근 정리해 나갑니다. 이러한 성향 덕분에 프로젝트에서도 기획·분석·설계·구현 단계를 단계적으로 진행하며 안정적으로 완성해
+          왔습니다.
 
-          초기에는 완성도를 높이고 싶은 마음이 강해 하나의 작업에 깊이 몰입하는 경우가 많았습니다.
+          초반에는 완성도를 높이고 싶은 마음이 강해 하나의 작업에 깊이 몰입하는 경우가 많았습니다.
           프로젝트 경험이 쌓이면서 기능을 작은 단위로 나누고 우선순위를 조정해 진행하는 방식을 익히며, 작업 흐름을 보다 안정적으로 관리할 수 있게 되었습니다.
 
           또한 일상에서 접하는 시각적·청각적 경험을 자연스럽게 아이디어로 연결하는 편이라, 프로젝트 초기 단계에서 새로운 기능이나 서비스 방향을 제안하는 일이 많았습니다. 이러한 과정은 사용자에게 필요한
@@ -212,15 +215,16 @@
 
           비상! 화장실 앱에서는 Google Maps의 화면 구조와 위치 기반 데이터 처리 방식을 익히며<br> 지도 중심 서비스의 기본 원리를 이해했습니다.
 
-          Book-Log(북로그) 앱에서는 독서 캘린더 기능을 중심으로 UI 구성과 데이터 흐름을 직접 설계했습니다. 달마다 다른 주 수에 맞춰 캘린더를 동적으로 구성하고, Firesotre를 통해 사용자별
+          Book-Log(북로그) 앱에서는 독서 캘린더 기능을 중심으로 UI 구성과 데이터 흐름을 직접 설계했습니다. 달마다 다른 주 수에 맞춰 캘린더를 동적으로 구성하고, Firestore를 통해 사용자별
           데이터를 저장 및 조회하며 실시간 데이터 연동 방식을 익혔습니다.
 
-          이러한 경험들은 기획,분석,설계,구현에 이르는 전체 개발 과정을 이해하는데 도움이 되었고, 사용자 중심의 모바일 서비스를 만드는 기반이 되었습니다.</p>
+          이러한 경험들은 기획·분석·설계·구현에 이르는 전체 개발 과정을 이해하는데 도움이 되었고, 사용자 중심의 모바일 서비스를 만드는 기반이 되었습니다.</p>
       </div>
       <div class="career-box">
         <h2>커리어 목표</h2>
         <p>현재는 안드로이드 기반 모바일 서비스를 중심으로 개발하고 있지만, 앞으로는 iOS 기반 개발까지 확장하여 다양한 환경에서 동작하는 서비스를 만들고자 합니다. 단일 플랫폼에 머무르기보다, 여러
-          기술을 적용해 더 많은 사용자에게 도달할 수 있는<br> 서비스를 구현하는 것이 저의 목표입니다. 또한 프로젝트 경험을 통해 사용자 경험의 중요성을 크게 느꼈습니다. 기능을 구현하는 데에서 그치지 않고,
+          기술을 적용해 더 많은 사용자에게 도달할 수 있는<br> 서비스를 구현하는 것이 저의 목표입니다. 또한 프로젝트 경험을 통해 사용자 경험의 중요성을 크게 느꼈습니다. 기능을 구현하는 데에서 그치지
+          않고,
           사용자가 어떤 흐름으로 앱을 사용하게 되는지, 어떤 지점에서 편리함을 느끼는지 고민하며 실용적이고 의미 있는 서비스를 만드는 개발자로 성장하고 싶습니다. 이를 위해 새로운 기술과 개발 방식을 꾸준히
           학습하고, 작은 <br>개선도 놓치지 않는 태도를 유지하려고 합니다. 배우는 과정 자체를 즐기며, 앞으로도 지속적으로 성장해 나가는 개발자가 <br>되겠습니다.</p>
       </div>
@@ -231,9 +235,9 @@
   <!-- PROJECT (자리만) -->
   <section id="project" data-section="project" class="project-section">
     <div class="project-timeline">
-     
+
       <div class="project-item">
-        
+
         <div class="project-card">
           <p class="period">팀 프로젝트 (2인)<br>2024.09 ~ 2024.12</p>
           <div class="icon-frame project-trigger" data-target="modal-pomodo">
@@ -259,7 +263,7 @@
       </div>
 
       <div class="project-item">
-       
+
         <div class="project-card">
           <p class="period">팀 프로젝트 (3인)<br>2025.06</p>
           <div class="icon-frame project-trigger" data-target="modal-toilet">
@@ -283,7 +287,7 @@
 
       <!-- Book-Log -->
       <div class="project-item">
-       
+
         <div class="project-card">
           <p class="period">팀 프로젝트 (2인)<br>2025.03 ~ 2025.06</p>
           <div class="icon-frame project-trigger" data-target="modal-booklog">
@@ -490,7 +494,7 @@
               <!-- 오른쪽: 텍스트 설명 -->
               <div class="feature-text">
                 <div class="feature-block">
-                  <p class="feature-title">뽀모도로 타이머</p>
+                  <p class="feature-title">뽀모도로 타이머 화면</p>
                   <p>
                     집중 시간과 휴식 시간을 설정하고, 누적된 총 집중 시간을 확인할 수 있는 기능입니다.
                     휴식 시작·종료 알림을 제공하여 사용자가 공부와 휴식 리듬을 놓치지 않도록 도와줍니다.
@@ -500,7 +504,7 @@
                 </div>
 
                 <div class="feature-block">
-                  <p class="feature-title">플래너</p>
+                  <p class="feature-title">플래너 화면</p>
                   <p>
                     사용자는 하루 단위로 학습 일정을 입력하고 관리할 수 있습니다.
                     각 일정은 완료 시 동그라미(O), 부분 완료 시 세모(△), 미완료 시 엑스(X)로 표시되어
@@ -528,7 +532,7 @@
               <!-- 오른쪽: 기록 설명 -->
               <div class="feature-text">
                 <div class="feature-block">
-                  <p class="feature-title">기록</p>
+                  <p class="feature-title">기록 화면</p>
                   <p class="feature-body">
                     기록 통계는 월별로 제공되며, 사용자의 집중 시간이 길어질수록
                     해당 날짜의 배경색이 더 진해집니다. 이를 통해 사용자는 자신의
@@ -647,7 +651,7 @@
 
               <p>
                 <span class="role-label">분석</span>
-                <span class="role-desc">기존 지도 앱의 검색 불편 및 정확도 한계 파악 ,<br>
+                <span class="role-desc">기존 지도 앱의 검색 불편 및 정확도 한계 파악,<br>
                   데이터베이스 Cloud Firestore 채택</span>
               </p>
 
@@ -717,7 +721,7 @@
 
                 <div class="feature-phone">
                   <img src="assets/img/Adobe_Express_-_file_framed.png" alt="화장실 찾기">
-                  <p class="feature-caption">화장실 찾기</p>
+                  <p class="feature-caption">화장실 찾기 화면</p>
                 </div>
               </div>
 
@@ -735,7 +739,7 @@
                 </div>
 
                 <div class="feature-block">
-                  <p class="feature-title">>화장실 찾기</p>
+                  <p class="feature-title">화장실 찾기 화면</p>
                   <p>
                     상단의 ‘근처 공중 화장실 찾기’ 버튼을 누르면 현재 위치를 기준으로 반경 500m 이내의 공중화장실이 빨간색 마커로 표시됩니다.
                   </p>
@@ -756,7 +760,7 @@
 
                 <div class="feature-phone">
                   <img src="assets/img/Adobe_Express_-_file_framed_(2).png" alt="구글 Map 앱 실행 화면">
-                  <p class="feature-caption">구글 Map 앱 실행</p>
+                  <p class="feature-caption">구글 Map 실행 화면</p>
                 </div>
               </div>
 
@@ -773,10 +777,10 @@
                 </div>
 
                 <div class="feature-block">
-                  <p class="feature-title">구글 Map 앱 실행</p>
+                  <p class="feature-title">구글 Map 실행 화면</p>
                   <p>
-                    상세 정보 창에서 ‘길찾기’ 버튼을 누르면 Google Map 앱이
-                    실행되어 해당 화장실까지의 이동 경로를 안내합니다.
+                    상세 정보 창에서 ‘길찾기’ 버튼을 누르면 Google Map이
+                    실행되어 해당 화장실까지의 이동 경로를 안내합니다.
                   </p>
                 </div>
               </div>
@@ -931,7 +935,7 @@
 
           <!-- Kotlin 언어 선택 이유 -->
           <div class="project-detail-section" id="booklog-Firestore">
-            <h4 class="project-detail-heading-2">Cloud Firestore 선택 이유</h4>
+            <h4 class="project-detail-heading-2">Cloud Firestore 선택 배경</h4>
 
             <div class="project-text-block">
               <p>
@@ -983,12 +987,14 @@
                   <p class="feature-title">책 상세 화면</p>
                   <p>
                     사용자는 서재에서 책의 상세 정보를
-                    확인하고 메모 및 완독일을 입력하거나 수정·삭제할 수 있으며, 지금까지 읽은 책의 총 권수를 확인할 수 있습니다.
+                    확인하고 메모 및 완독일을 입력하거나 수정·삭제할 수 있으며, 지금까지 읽은 책의 총 권수를 확인할 수 있습니다.
                   </p>
                 </div>
               </div>
             </div>
           </div>
+
+
 
           <div class="project-feature-section" id="booklog-feature2">
             <h4 class="project-detail-heading feature-heading">기능 소개</h4>
@@ -1011,12 +1017,11 @@
                 <div class="feature-block">
                   <p class="feature-title">독서 캘린더 화면</p>
                   <p>
-                    사용자의 독서 기록을 날짜별로 확인할 수 있는 달력 형태의 기능
-                    사용자는 특정 날짜에 읽은 책을 표지를 통해 확인할 수 있으며, 표지를 클릭하면 해당 책의 상세 정보로 이동할 수 있습니다.
-                    캘린더 상단에는 해당 월의 총 독서 권수가
-                    표시되어, 월별 독서량을 파악할 수 있습니다.
-                    이전/다음 달로 이동하거나, 연·월을 직접 선택하여
-                    원하는 기간의 독서 기록을 조회할 수 있습니다.
+                    사용자의 독서 기록을 날짜별로 확인할 수 있는 달력 형태의 기능입니다.
+                    사용자는 특정 날짜에 읽은 책을 표지로 확인할 수 있고, 표지를 클릭하면
+                    해당 책의 상세 정보로 이동할 수 있습니다. 월별 총 독서 권수가
+                    표시되어 월별 독서량을 파악할 수 있으며, 이전/다음 달 또는
+                    연·월을 직접 선택해 원하는 기간의 독서 기록을 조회할 수 있습니다.
 
                   </p>
                 </div>
@@ -1024,9 +1029,9 @@
                 <div class="feature-block">
                   <p class="feature-title">책탑 화면</p>
                   <p>
-                    사용자가 읽은 책을 책 모양 블록이 위로 쌓이는 형태로 시각화한 기능
-                    사용자가 서재에 책을 추가하면 책탑에 자동으로 반영되며, 책 권수나 쪽수에 따라 책탑 블록의 높이가 달라집니다.
-                    전체, 월별, 연도별 등 원하는 기간을 선택하여 해당 기간의 책탑을
+                    사용자가 읽은 책을 책 모양 블록이 위로 쌓이는 형태로 시각화한 기능입니다.
+                    서재에 책을 추가하면 책탑에 자동으로 반영되며, 책 권수나 쪽수에 따라 책탑 블록의 높이가 달라집니다.
+                    전체, 월별, 연도별 등 원하는 기간을 선택하여 해당 기간의 책탑을
                     확인할 수 있습니다.
                     독서량이 많아질수록 책탑의 높이가 상승하며, 실제 사물의 크기와
                     비교하여 독서량을 한눈에 확인할 수 있습니다.
@@ -1036,7 +1041,111 @@
             </div>
           </div>
         </div>
+
+        <!--  프린트 전용 레이아웃 -->
+        <div id="booklog-feature1-print" class="print-only">
+
+          <!-- [1페이지] 서재 + 서재 책 등록 -->
+          <div class="print-page">
+            <h4 class="project-detail-heading feature-heading">기능 소개</h4>
+
+            <div class="feature-layout">
+              <div class="feature-images">
+                <div class="feature-phone">
+                  <img src="assets/img/서재화면_framed_(1).png" alt="서재 화면">
+                  <p class="feature-caption">서재 화면</p>
+                </div>
+
+                <div class="feature-phone">
+                  <img src="assets/img/책추가화면_framed.png" alt="서재 책 등록 화면">
+                  <p class="feature-caption">서재 책 등록 화면</p>
+                </div>
+              </div>
+
+              <div class="feature-text">
+                <div class="feature-block">
+                  <p class="feature-title">서재 화면</p>
+                  <p>
+                    서재는 사용자가 읽은 책을 기록하고 관리하는 공간으로,
+                    알라딘 OpenAPI를 활용해 책을 검색하여 서재에 추가할 수 있습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- [2페이지] 책 상세 + 독서 캘린더 -->
+          <div class="print-page">
+            <h4 class="project-detail-heading feature-heading">기능 소개</h4>
+
+            <div class="feature-layout">
+              <div class="feature-images">
+                <div class="feature-phone">
+                  <img src="assets/img/상세정보_framed.png" alt="책 상세 화면">
+                  <p class="feature-caption">책 상세 화면</p>
+                </div>
+
+                <div class="feature-phone">
+                  <img src="assets/img/독서캘린더_framed.png" alt="독서 캘린더 화면">
+                  <p class="feature-caption">독서 캘린더 화면</p>
+                </div>
+              </div>
+
+              <div class="feature-text">
+                <div class="feature-block">
+                  <p class="feature-title">책 상세 화면</p>
+                  <p>
+                    사용자는 서재에서 책의 상세 정보를 확인하고
+                    메모 및 완독일을 입력하거나 수정·삭제할 수 있으며,
+                    지금까지 읽은 책의 총 권수를 확인할 수 있습니다.
+                  </p>
+                </div>
+
+                <div class="feature-block">
+                  <p class="feature-title">독서 캘린더 화면</p>
+                  <p>
+                    사용자의 독서 기록을 날짜별로 확인할 수 있는 달력 형태의 기능입니다.
+                    사용자는 특정 날짜에 읽은 책을 표지로 확인할 수 있고, 표지를 클릭하면
+                    해당 책의 상세 정보로 이동할 수 있습니다. 월별 총 독서 권수가
+                    표시되어 월별 독서량을 파악할 수 있으며, 이전/다음 달 또는
+                    연·월을 직접 선택해 원하는 기간의 독서 기록을 조회할 수 있습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- [3페이지] 책탑만 단독 -->
+          <div class="print-page">
+            <h4 class="project-detail-heading feature-heading">기능 소개</h4>
+
+            <div class="feature-layout">
+              <div class="feature-images">
+                <div class="feature-phone">
+                  <img src="assets/img/책탑_framed_(1).png" alt="책탑 화면">
+                  <p class="feature-caption">책탑 화면</p>
+                </div>
+              </div>
+
+              <div class="feature-text">
+                <div class="feature-block">
+                  <p class="feature-title">책탑 화면</p>
+                  <p>
+                    사용자가 읽은 책을 책 모양 블록이 위로 쌓이는 형태로 시각화한 기능입니다.
+                    서재에 책을 추가하면 책탑에 자동으로 반영되며, 책 권수나 쪽수에 따라 책탑 블록의 높이가 달라집니다.
+                    전체, 월별, 연도별 등 원하는 기간을 선택하여 해당 기간의 책탑을
+                    확인할 수 있습니다.
+                    독서량이 많아질수록 책탑의 높이가 상승하며, 실제 사물의 크기와
+                    비교하여 독서량을 한눈에 확인할 수 있습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
 
 
 
@@ -1047,7 +1156,7 @@
 
 
 
-<div class="copy-toast" id="copyToast">이메일이 복사되었습니다.</div>
+  <div class="copy-toast" id="copyToast">이메일이 복사되었습니다.</div>
 
 </body>
 

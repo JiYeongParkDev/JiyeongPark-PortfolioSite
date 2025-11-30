@@ -153,6 +153,16 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+  const printBtn = document.getElementById('print-btn');
+  if (printBtn) {
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+  }
+
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
 
 
 });
@@ -272,3 +282,4 @@ function initModalScrollSpy(modal) {
   // 처음 열렸을 때도 한 번 맞춰주기
   updateActiveByScroll();
 }
+
